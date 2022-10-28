@@ -3,7 +3,7 @@ import {NavigationContainer} from '@react-navigation/native'
 import Routes from './src/routes';
 import {initializeApp} from 'firebase/app';
 import React, {useState, useEffect} from 'react';
-
+import firebase from './firebaseConnection'
 
 console.disableYellowBox=true;
 
