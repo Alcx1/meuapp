@@ -3,26 +3,25 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet , TextInput, TouchableOpacity} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { firebaseConfig } from '../../../firebaseConnection';
-import firebase from '../../../firebaseConnection';
 
-console.disableYellowBox=true;
 
 export default function welcome() {
-  const [nome, setNome] = useState('') 
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
 
-  useEffect(() =>{
-    async function dados(){
-      await firebase.database().ref('chave').on('valor',(snapshot)=>{
-        setNome(snapshot.val());
-      });
-    }
-    dados();
-  }, [])  
+  function loginFirebase(){
+    firebase.auth().createUserWithEmailAndPassword(email,senha).catch(function(error) {
+      var errorCode = error.code
+      var errorMessage = error.message
+      alert(errorCode, errorMessage);
+    });
+  }
+
   return (
    <View style={styles.container}>
     <Animatable.View animation="fadeInLeft" delay={500} style={styles.containerHeader}>
       <Text style={styles.message}>
-        Bem-vindo(a){nome}!
+        Bem-vindo(a)!
       </Text>
     </Animatable.View>
 
@@ -32,13 +31,19 @@ export default function welcome() {
       <TextInput
           placeholder="Digite seu email..."
           style={styles.input}
+          onChangeText={email => setEmail(email)}
+          value={email}
       />
       <Text style={styles.title}>Senha</Text>
       <TextInput
           placeholder="Sua senha..."
           style={styles.input}
+          onChangeText={senha => setSenha(senha)}
+          value={senha}
       />
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={()=>{loginFirebase}}>
+
+
         <Text style={styles.buttonText}>Acessar</Text>
       </TouchableOpacity>
 
