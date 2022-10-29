@@ -1,4 +1,3 @@
-
 let firebaseConfig = {
   apiKey: "AIzaSyCLM1MVp-fnBinknxAIT2p1DN3NgEVK8Kk",
   authDomain: "appcar-9188e.firebaseapp.com",

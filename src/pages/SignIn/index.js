@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react';
 import { View, Text, StyleSheet , TextInput, TouchableOpacity} from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import { firebaseConfig } from '../../../firebaseConnection';
-
+import firebase from 'firebase/app'; 
 
 export default function welcome() {
   const [email, setEmail] = useState('');
